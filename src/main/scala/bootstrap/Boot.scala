@@ -3,6 +3,7 @@ package bootstrap.liftweb
 
 import net.liftweb.http.{Html5Properties, LiftRules, Req}
 import net.liftweb.sitemap.{Menu, SiteMap}
+import net.liftweb.sitemap.Loc.LocGroup
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -14,8 +15,14 @@ class Boot {
     LiftRules.addToPackages("com.github.nmarshall23")
 
     // Build SiteMap
+
+    val menu_report = Menu.i("Report") / "report"
+    val menu_map = Menu.i("Map") / "map"
+
     def sitemap(): SiteMap = SiteMap(
-      Menu.i("Home") / "index"
+
+      menu_report >> LocGroup("menu"),
+      menu_map    >> LocGroup("menu")
     )
 
     // Use HTML5 for rendering

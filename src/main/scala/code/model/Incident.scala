@@ -6,15 +6,15 @@ package code.model
 
 import net.liftweb.mapper._
 
-class TypeOfAbuse extends LongKeyedMapper[TypeOfAbuse] with IdPK{
+class Incident extends LongKeyedMapper[Incident] with IdPK{
 
-  def getSingleton = TypeOfAbuse
-
+  def getSingleton = Incident
 
   object name extends MappedString(this,100)
+
 }
 
-object TypeOfAbuse extends TypeOfAbuse with LongKeyedMetaMapper[TypeOfAbuse] {
+object Incident extends Incident with LongKeyedMetaMapper[Incident] {
 
   override def fieldOrder = List(name)
 }
