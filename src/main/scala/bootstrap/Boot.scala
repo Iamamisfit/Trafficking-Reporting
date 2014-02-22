@@ -1,3 +1,4 @@
+package com.github.nmarshall23
 package bootstrap.liftweb
 
 import net.liftweb.http.{Html5Properties, LiftRules, Req}
@@ -10,7 +11,7 @@ import net.liftweb.sitemap.{Menu, SiteMap}
 class Boot {
   def boot {
     // where to search snippet
-    LiftRules.addToPackages("org.yourorganization.liftfromscratch")
+    LiftRules.addToPackages("com.github.nmarshall23")
 
     // Build SiteMap
     def sitemap(): SiteMap = SiteMap(
