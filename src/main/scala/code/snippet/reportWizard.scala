@@ -55,12 +55,12 @@ object WizardExample extends Wizard {
   def finish() {
     val report = new TraffickingReport
 
-    report.state.set(screen1.us_state)
-    report.country.set(screen1.us_country)
-    report.TypeOfTraffic.set(screen1.typeOfAbuse)
-    report.NumberOfPeople.set(screen1.numberOfVic)
+    TraffickingReport.state.set(screen1.us_state)
+    TraffickingReport.country.set(screen1.us_country)
+    TraffickingReport.TypeOfTraffic.set(screen1.typeOfAbuse)
+    TraffickingReport.NumberOfPeople.set(screen1.numberOfVic)
 
-    report.save()
+    TraffickingReport.create
 
   //  S.notice("Name: "+screen1.name)
   //  S.notice("Age: "+screen1.age)
