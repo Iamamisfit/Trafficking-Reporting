@@ -1,5 +1,6 @@
 *.class
 *.log
+*.swp
 .idea/
 .idea_modules/
 # sbt specific
