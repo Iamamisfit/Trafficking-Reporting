@@ -62,6 +62,7 @@ object WizardExample extends Wizard {
 
     TraffickingReport.create
 
+    S.redirectTo("/thankyou.html")
   //  S.notice("Name: "+screen1.name)
   //  S.notice("Age: "+screen1.age)
   }

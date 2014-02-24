@@ -44,25 +44,18 @@ class Boot {
     // where to search snippet
     LiftRules.addToPackages("code")
 
-    //I don't think I need to do this, I just want to use the Locale set by the env.
-    //LiftRules.localeCalculator = Locale.getDefault()
-
     // Build SiteMap
-    //val entries = List(
-     // Menu.i(S.?("menu_home") ) / "index", // the simple way to declare a menu
-      //Menu.i(S.?("menu_report") ) / "report" // the simple way to declare a menu
-      //Menu.i("Make a Report") / "report" // the simple way to declare a menu
-    //)
-
     def siteMap = SiteMap(
       Menu.i("MENU_HOME") / "index",
-      Menu.i("MENU_REPORT") / "report"
+      Menu.i("MENU_REPORT") / "report",
+      Menu("") / "thankyou" >> Hidden
     )
 
     
     // set the sitemap.
     LiftRules.setSiteMapFunc(() => siteMap)
 
+    //LiftRules.localeCalculator = Locale.getDefault()
     LiftRules.localeCalculator = (r: Box[HTTPRequest]) => new Locale("en")
     LiftRules.resourceNames ::= "i18n/textbundle"
 
