@@ -14,6 +14,8 @@ import mapper._
 import code.model._
 import net.liftmodules.JQueryModule
 import java.util.Locale
+import net.liftweb.http.provider.HTTPRequest
+
 
 
 /**
@@ -46,17 +48,23 @@ class Boot {
     //LiftRules.localeCalculator = Locale.getDefault()
 
     // Build SiteMap
-    val entries = List(
-      Menu.i(S.?("menu_home") ) / "index", // the simple way to declare a menu
-      Menu.i(S.?("menu_report") ) / "report" // the simple way to declare a menu
+    //val entries = List(
+     // Menu.i(S.?("menu_home") ) / "index", // the simple way to declare a menu
+      //Menu.i(S.?("menu_report") ) / "report" // the simple way to declare a menu
       //Menu.i("Make a Report") / "report" // the simple way to declare a menu
+    //)
+
+    def siteMap = SiteMap(
+      Menu.i("MENU_HOME") / "index",
+      Menu.i("MENU_REPORT") / "report"
     )
 
-    // set the sitemap.  Note if you don't want access control for
-    // each page, just comment this line out.
-    //LiftRules.setSiteMa,pFunc(() => sitemapMutators(sitemap))
+    
+    // set the sitemap.
+    LiftRules.setSiteMapFunc(() => siteMap)
 
-    LiftRules.setSiteMap(SiteMap(entries:_*))
+    LiftRules.localeCalculator = (r: Box[HTTPRequest]) => new Locale("en")
+    LiftRules.resourceNames ::= "i18n/textbundle"
 
     //Init the jQuery module, see http://liftweb.net/jquery for more information.
     LiftRules.jsArtifacts = JQueryArtifacts
