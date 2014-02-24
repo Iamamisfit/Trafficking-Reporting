@@ -13,6 +13,7 @@ import mapper._
 
 import code.model._
 import net.liftmodules.JQueryModule
+import java.util.Locale
 
 
 /**
@@ -41,10 +42,14 @@ class Boot {
     // where to search snippet
     LiftRules.addToPackages("code")
 
+    //I don't think I need to do this, I just want to use the Locale set by the env.
+    //LiftRules.localeCalculator = Locale.getDefault()
+
     // Build SiteMap
     val entries = List(
-      Menu.i("Home") / "index", // the simple way to declare a menu
-      Menu.i("Make a Report") / "report" // the simple way to declare a menu
+      Menu.i(S.?("menu_home") ) / "index", // the simple way to declare a menu
+      Menu.i(S.?("menu_report") ) / "report" // the simple way to declare a menu
+      //Menu.i("Make a Report") / "report" // the simple way to declare a menu
     )
 
     // set the sitemap.  Note if you don't want access control for
