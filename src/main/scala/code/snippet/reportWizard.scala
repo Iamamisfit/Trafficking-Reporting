@@ -9,6 +9,7 @@ import net.liftweb.wizard._
 import java.io.File
 import scala.io.Source
 import code.model.TraffickingReport
+import code.lib.ReportNotifier
 
 /**
  * Define the multi-page input screen
@@ -63,6 +64,9 @@ object WizardExample extends Wizard {
     TraffickingReport.create
 
     S.redirectTo("/thankyou.html")
+
+    ReportNotifier.sendNotification()
+
   //  S.notice("Name: "+screen1.name)
   //  S.notice("Age: "+screen1.age)
   }

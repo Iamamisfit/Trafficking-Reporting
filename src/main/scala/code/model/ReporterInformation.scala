@@ -11,8 +11,10 @@ class ReporterInformation extends LongKeyedMapper[ReporterInformation] with IdPK
   def getSingleton = ReporterInformation
 
   //object id extends MappedLongIndex(this)
-  object firstName extends MappedString(this,100)
-  object lastName extends MappedString(this,100)
+  //object firstName extends MappedString(this,100)
+  //object lastName extends MappedString(this,100)
+  object Name extends MappedString(this,100)
+  object PhoneNumber extends MappedString(this,10)
 
   // Trafficking Report ID
   // Name
@@ -24,5 +26,5 @@ class ReporterInformation extends LongKeyedMapper[ReporterInformation] with IdPK
 
 object ReporterInformation extends ReporterInformation with LongKeyedMetaMapper[ReporterInformation] {
 
-  override def fieldOrder = List(id, firstName, lastName)
+  override def fieldOrder = List(Name, PhoneNumber)
 }

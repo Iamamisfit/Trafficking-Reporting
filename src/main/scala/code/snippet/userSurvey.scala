@@ -9,6 +9,7 @@ import code.lib._
 import net.liftweb.http._
 import net.liftweb.common._
 import net.liftweb.util.Helpers._
+import code.model.ReporterInformation
 
 class UserSurvey extends StatefulSnippet {
 
@@ -29,6 +30,10 @@ class UserSurvey extends StatefulSnippet {
 
   // process the form
   // Fixme save data to database
-  private def process() = S.redirectTo("/")
+  private def process() = {
+    ReporterInformation.Name.set(name)
+    ReporterInformation.PhoneNumber.set(phone_number)
+    S.redirectTo("/")
+  }
 
 }
