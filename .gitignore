@@ -18,4 +18,8 @@ lift_proto.db.h2.db
 lift_proto.db.lock.db
 lift_proto.db.trace.db
 
+
+
+.classpath_nb
+
 *~
