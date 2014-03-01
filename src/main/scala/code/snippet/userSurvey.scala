@@ -33,6 +33,10 @@ class UserSurvey extends StatefulSnippet {
   private def process() = {
     ReporterInformation.Name.set(name)
     ReporterInformation.PhoneNumber.set(phone_number)
+    ReporterInformation.DateOfReport.set(new Date)
+
+    ReporterInformation.create
+
     S.redirectTo("/")
   }
 

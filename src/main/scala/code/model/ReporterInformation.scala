@@ -15,6 +15,7 @@ class ReporterInformation extends LongKeyedMapper[ReporterInformation] with IdPK
   //object lastName extends MappedString(this,100)
   object Name extends MappedString(this,100)
   object PhoneNumber extends MappedString(this,10)
+  object DateOfReport extends MappedDateTime(this)
 
   // Trafficking Report ID
   // Name
@@ -26,5 +27,5 @@ class ReporterInformation extends LongKeyedMapper[ReporterInformation] with IdPK
 
 object ReporterInformation extends ReporterInformation with LongKeyedMetaMapper[ReporterInformation] {
 
-  override def fieldOrder = List(Name, PhoneNumber)
+  override def fieldOrder = List(Name, PhoneNumber, DateOfReport)
 }

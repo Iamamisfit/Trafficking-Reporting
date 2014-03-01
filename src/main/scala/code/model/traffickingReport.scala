@@ -20,7 +20,7 @@ class TraffickingReport extends LongKeyedMapper[TraffickingReport] with IdPK{
   object DescriptionOfTraffic extends MappedString(this, 300)
   object isThisOnline extends MappedBoolean(this)
   object urlOfOnline extends MappedString(this, 100)
-  object dateOfReport extends MappedDateTime(this)
+  object DateOfReport extends MappedDateTime(this)
 
   //location
 

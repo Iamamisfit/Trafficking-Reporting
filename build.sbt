@@ -1,6 +1,6 @@
 name := "Trafficking Reporter"
 
-version := "0.1.0"
+version := "0.1.1"
 
 organization := "net.liftweb"
 
@@ -30,7 +30,8 @@ libraryDependencies ++= {
     "ch.qos.logback"    % "logback-classic"     % "1.0.6",
     "org.specs2"        %% "specs2"             % "1.14"             % "test",
     "com.h2database"    % "h2"                  % "1.3.167",
-    "postgresql" % "postgresql" % "8.4-701.jdbc4"
+    "postgresql" % "postgresql" % "8.4-701.jdbc4",
+    "com.github.nscala-time" %% "nscala-time" % "0.8.0"
   )
 }
 
