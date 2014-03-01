@@ -21,6 +21,7 @@ lift_proto.db.trace.db
 # don't share my credentials
 Isis.props
 Isis.logback.xml
+production.default.props
 
 .classpath_nb
 
