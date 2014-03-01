@@ -24,15 +24,15 @@ object WizardExample extends Wizard with Logger{
   val source = Source.fromURL(statesURL)
   val states = source.getLines.toSeq
 
-  val typeOfTrafficking = Seq("Labor", "Sex")
+  val traffickingList = Seq("Labor", "Sex")
 
   // define the first screen
   // Get Location information
   val screen1 = new Screen {
 
-    val us_state = select("What State?", "Someplace", states)
+    val us_state = select(S ? "QUESTION_STATE", states.head, states)
     val us_country = field(S ? "QUESTION_CITY", "")
-    val typeOfAbuse = select( (S ? "QUESTION_TRAFFICKING_TYPE") +"?", "", typeOfTrafficking)
+    val typeOfTrafficking = select(S ? "QUESTION_TRAFFICKING_TYPE", traffickingList.head, traffickingList)
     val numberOfVic = field("Number of:", 1, minVal(1, ""))
 
   }
@@ -43,7 +43,7 @@ object WizardExample extends Wizard with Logger{
     val desp = textarea( S ? "QUESTION_DESCRIBE_SITUATION", "")
 
     // Was Online?
-    val rad = radio("Did this event happen Online?", "No", List("Yes", "No"))
+    val rad = radio(S ? "QUESTION_IS_ONLINE", S ? "ANSWER_NO", List(S ? "ANSWER_NO", S ? "ANSWER_YES"))
     // Url?
     val onlineLoc = field("Url of:", "")
 
@@ -57,18 +57,19 @@ object WizardExample extends Wizard with Logger{
 
 
   def finish() {
-    val report = new TraffickingReport
+    val report = TraffickingReport.create
+    report.state.set(screen1.us_state)
+    report.country.set(screen1.us_country)
+    report.TypeOfTraffic.set(screen1.typeOfTrafficking)
+    report.NumberOfPeople.set(screen1.numberOfVic)
+    report.DescriptionOfTraffic.set(screen2.desp)
+    report.DateOfReport.set(new Date)
 
-    TraffickingReport.state.set(screen1.us_state)
-    TraffickingReport.country.set(screen1.us_country)
-    TraffickingReport.TypeOfTraffic.set(screen1.typeOfAbuse)
-    TraffickingReport.NumberOfPeople.set(screen1.numberOfVic)
-    TraffickingReport.DescriptionOfTraffic.set(screen2.desp)
-    TraffickingReport.DateOfReport.set(new Date)
+    report.save()
 
-    TraffickingReport.create
+    val reportId = report.id
 
-    S.redirectTo("/thankyou.html")
+    S.redirectTo("/thankyou.html?SITID=" + reportId)
 
     ReportNotifier.sendNotification()
 

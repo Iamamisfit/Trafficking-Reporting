@@ -23,19 +23,23 @@ class UserSurvey extends StatefulSnippet {
 
   // associate behavior with each HTML element
   def render = 
-    "name=name" #> SHtml.text(name, name = _, "id" -> "the_name") &
-    "name=phone_number" #> SHtml.text(phone_number, phone_number = _) &
+    ("name=" + S ? "REPORTER_NAME") #> SHtml.text(name, name = _, "id" -> "the_name") &
+    ("name=" + S ? "REPORTER_PHONE") #> SHtml.text(phone_number, phone_number = _) &
     "type=submit" #> SHtml.onSubmitUnit(process)
 
 
   // process the form
   // Fixme save data to database
   private def process() = {
-    ReporterInformation.Name.set(name)
-    ReporterInformation.PhoneNumber.set(phone_number)
-    ReporterInformation.DateOfReport.set(new Date)
 
-    ReporterInformation.create
+    val reporter = ReporterInformation.create
+
+    reporter.Name.set(name)
+    reporter.PhoneNumber.set(phone_number)
+    reporter.DateOfReport.set(new Date)
+
+
+    reporter.save()
 
     S.redirectTo("/")
   }
