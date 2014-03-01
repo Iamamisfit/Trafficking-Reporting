@@ -56,7 +56,11 @@ class Boot {
     LiftRules.setSiteMapFunc(() => siteMap)
 
     //LiftRules.localeCalculator = Locale.getDefault()
-    LiftRules.localeCalculator = (r: Box[HTTPRequest]) => new Locale("en")
+    def getLocaleFromProps(r: Box[HTTPRequest]) = {
+      val locale = Props.get("app.locale","en")
+      new Locale(locale)
+    }
+    LiftRules.localeCalculator = getLocaleFromProps
     LiftRules.resourceNames ::= "i18n/textbundle"
 
     //Init the jQuery module, see http://liftweb.net/jquery for more information.

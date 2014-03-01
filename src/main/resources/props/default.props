@@ -1,4 +1,3 @@
-
 mail.transport.protocol=smtp
 mail.smtp.host=smtp.gmail.com
 mail.smtp.port=587
@@ -6,6 +5,9 @@ mail.smtp.starttls.enable=true
 mail.smtp.auth=true
 # mail.user=email@address.com
 # mail.password=password
+
+#app.locale=pt
+app.locale=en
 
 notify.email.subject = "New Report"
 # notify.email.to   = 
